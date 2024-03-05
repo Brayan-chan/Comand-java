@@ -12,17 +12,95 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import java.util.ArrayList;
+import java.io.File;
+import java.util.InputMismatchException;
 
-public class Consola extends JFrame {
+/*
+
+class Assed extends Accounts implements Implementaciones{
+
+    double current(String nameFile) {
+        Arraylist<Accounts> currentAsset = createAccounts(
+                "Caja",
+                "Bancos",
+                "Inversiones temporales",
+                "Mercancias",
+                "Clientes",
+                "Documentos por cobrar",
+                "Deudores diversos", 
+                "Anticipo a proveedores"
+        );
+    return account(currentAsset, "Activo", "Circulante", nameFile);
+    }
+}
+
+class Accounts extends Consola implements Implementaciones{
+    public Accounts() {}
+    
+    private String name;
+    
+    public Accounts(String name) {
+        this.name = name;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public ArrayList<Accounts> createAccounts(String... names) {
+        ArrayList<Accounts> accounts = new ArrayList<>();
+        for (int i = 0; i < names.length; i++) {
+            accounts.add(new Accounts(names[i]));
+        }
+        return accounts;
+    }
+    
+    public double account(ArrayList<Accounts> accounts, String type, String clasification, String nameFile) {
+        System.out.println(clasification);
+        new TextFile(nameFile).updateTextFile(type + " " + clasification);
+        double[] values = new double[accounts.size()];
+        ArrayList<Accounts> nonEmptyAccounts = new ArrayList<>();
+        double total = 0;
+
+        try {
+            for (int i = 0; i < accounts.size(); i++) {
+                System.out.print(accounts.get(i).getName() + " $");
+                values[i] = new java.util.Scanner(System.in).nextDouble();
+            }
+            for (int i = 0; i < accounts.size(); i++) {
+                if (values[i] != 0) {
+                    nonEmptyAccounts.add(accounts.get(i));
+                    total += values[i];
+
+                    if (i < nonEmptyAccounts.size()) {
+                        new TextFile(nameFile).updateTextFile(nonEmptyAccounts.get(i).getName() + " $" + values[i]);
+                    }
+                }
+            }
+            System.out.println("Total de  " + clasification.toLowerCase() + ": $" + total);
+
+            new TextFile(nameFile).updateTextFile("Total de " + clasification.toLowerCase() + ": $" + total);
+
+        } catch (InputMismatchException | NumberFormatException | ArithmeticException | NoSuchFieldError  | IndexOutOfBoundsException e) {
+            System.err.println("Se produjo un error. Intenta de nuevo" + '(' + e.getMessage() + ')');
+            restart(nameFile);
+        }
+    }
+    return total;
+}
+*/
+
+public class Consola extends JFrame implements Implementaciones{
     private JPanel panel = new JPanel();
     private JLabel label = new JLabel();
-    private JLabel labelTitulo = new JLabel("Consola de Comandos en Java");
+    private JLabel labelTitulo = new JLabel("General Comands");
     private JTextField texto = new JTextField();
     private JTextArea areaTerminal = new JTextArea("");
     private String[] preguntas = {
-        "¿Cuál es tu nombre?",
-        "¿Cuál es tu edad?",
-        "¿Cuál es tu ocupación?"
+        "Nombre de la empresa",
+        "Nombre de la entidad",
+        "Ocupación"
     };
     private int preguntaActual = 0;
 
@@ -45,7 +123,7 @@ public class Consola extends JFrame {
         labelTitulo.setBackground(Color.black);
         labelTitulo.setForeground(Color.red);
         labelTitulo.setFont(new Font("consolas", 1, 20));
-        texto.setBounds(150, 90, 600, 20);
+        texto.setBounds(150, 90, 250, 20);
         texto.setForeground(Color.green);
         texto.setBackground(Color.black);
         texto.setSelectionColor(Color.red);
